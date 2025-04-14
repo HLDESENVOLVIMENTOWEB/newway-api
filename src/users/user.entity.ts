@@ -14,6 +14,9 @@ export class User {
   @Column()
   password: string;
 
+  @Column({ default: 'inativo' })
+  status: string;
+
   @ManyToMany(() => Profile, (profile) => profile.users, { eager: true })
   @JoinTable()
   profiles: Profile[];

@@ -27,15 +27,22 @@ import {
     }
   
     async create(dto: CreateUserDto): Promise<User> {
-      const profiles = await this.profileRepo.findByIds(dto.profileIds);
+      const defaultProfile = await this.profileRepo.findOne({ where: { name: 'usuario' } });
+
+    
+      if (!defaultProfile) {
+        throw new NotFoundException('Perfil padrão "usuário" não encontrado 22');
+      }
+    
       const hashed = await bcrypt.hash(dto.password, 10);
-  
+    
       const user = this.userRepo.create({
         email: dto.email,
         password: hashed,
-        profiles,
+        profiles: [defaultProfile],
+        status: 'inativo',
       });
-  
+    
       return this.userRepo.save(user);
     }
   
