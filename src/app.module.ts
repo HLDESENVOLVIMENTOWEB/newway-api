@@ -5,6 +5,11 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
+import { ProfilesModule } from './profiles/profiles.module';
+import { PermissionsModule } from './permissions/permissions.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -16,8 +21,12 @@ import { ConfigModule } from '@nestjs/config';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
       autoLoadEntities: true,
-      synchronize: true, 
+      synchronize: true,
     }),
+    AuthModule,
+    UsersModule,
+    ProfilesModule,
+    PermissionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
