@@ -5,6 +5,8 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { UsersModule } from './users/users.module';
 import { ProfilesModule } from './profiles/profiles.module';
 import { PermissionsModule } from './permissions/permissions.module';
+import { TasksModule } from './tasks/tasks.module';
+import { AuthModule } from './auth/auth.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -26,7 +28,7 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config, {
-    include: [UsersModule, ProfilesModule, PermissionsModule], 
+    include: [AuthModule, UsersModule, ProfilesModule, PermissionsModule, TasksModule], 
   });
 
   SwaggerModule.setup('api', app, document);
