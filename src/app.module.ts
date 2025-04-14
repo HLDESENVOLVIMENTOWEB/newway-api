@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { ProfilesModule } from './profiles/profiles.module';
 import { PermissionsModule } from './permissions/permissions.module';
+import { TasksModule } from './tasks/tasks.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { PermissionsModule } from './permissions/permissions.module';
     UsersModule,
     ProfilesModule,
     PermissionsModule,
+    TasksModule,
   ],
   controllers: [AppController],
   providers: [AppService],
